@@ -55,20 +55,11 @@ export const About = () => {
             }`}
           >
             <h3 className="text-2xl font-bold mb-4">My Story</h3>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
-              With over 5 years of experience in web development, I've had the privilege
-              of working with startups and established companies to bring their digital
-              visions to life.
-            </p>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
-              I specialize in building modern, responsive web applications using cutting-edge
-              technologies. My approach combines technical expertise with a keen eye for
-              design, ensuring that every project is both functional and beautiful.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              When I'm not coding, you'll find me exploring new technologies, contributing
-              to open-source projects, or sharing knowledge with the developer community.
-            </p>
+            <p>I'm a passionate BTech IT student at Heritage Institute of Technology with a strong focus on full-stack development. With a current YGPA of 9.73, I combine academic excellence with practical skills in modern web technologies.</p>
+            <br />  
+            <p>I have worked as an SDE Intern at Bluestock Fintech, building scalable financial technology solutions. My experience also includes AI training at Outlier AI and a Gen AI internship at AI Wallah, where I worked on cutting-edge artificial intelligence applications and language models.</p>
+            <br />
+            <p>Through hackathons and collaborative projects, I've developed healthcare platforms, multilingual chatbots, and innovative software solutions. I thrive in environments that challenge me to create user-centric applications while continuously learning emerging technologies.</p>
           </div>
 
           <div

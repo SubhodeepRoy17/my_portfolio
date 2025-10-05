@@ -18,9 +18,11 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
@@ -29,34 +31,81 @@ export const Contact = () => {
         description: "Please fill in all fields",
         variant: "destructive",
       });
+      setIsLoading(false);
       return;
     }
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
 
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      // Open default email client with pre-filled data
+      const subject = `Portfolio Contact - Message from ${formData.name}`;
+      const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+
+Message:
+${formData.message}
+
+---
+This message was sent from your portfolio website contact form.
+      `.trim();
+
+      // Create mailto link
+      const mailtoLink = `mailto:subhodeeproy37@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+
+      toast({
+        title: "Opening Email Client",
+        description: "Please send your message from your email client.",
+      });
+
+      // Clear form after a short delay
+      setTimeout(() => {
+        setFormData({ name: "", email: "", message: "" });
+      }, 1000);
+
+    } catch (error) {
+      console.error("Error:", error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "hello@johndoe.com",
-      link: "mailto:hello@johndoe.com",
+      value: "subhodeeproy37@gmail.com",
+      link: "mailto:subhodeeproy37@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+91 9123881005",
+      link: "tel:+919123881005",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Kolkata, West Bengal, India",
       link: null,
     },
   ];
@@ -89,7 +138,7 @@ export const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
+                  Name *
                 </label>
                 <Input
                   id="name"
@@ -100,12 +149,14 @@ export const Contact = () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   className="glass border-white/10 focus:border-primary"
+                  required
+                  disabled={isLoading}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
+                  Email *
                 </label>
                 <Input
                   id="email"
@@ -116,12 +167,14 @@ export const Contact = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   className="glass border-white/10 focus:border-primary"
+                  required
+                  disabled={isLoading}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
+                  Message *
                 </label>
                 <Textarea
                   id="message"
@@ -131,13 +184,33 @@ export const Contact = () => {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   className="glass border-white/10 focus:border-primary min-h-[150px]"
+                  required
+                  disabled={isLoading}
                 />
               </div>
 
-              <Button type="submit" variant="hero" className="w-full group">
-                Send Message
-                <Send className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button 
+                type="submit" 
+                variant="hero" 
+                className="w-full group"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Preparing...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </Button>
+              
+              <p className="text-xs text-muted-foreground text-center">
+                This will open your default email client to send the message.
+              </p>
             </form>
           </Card>
 

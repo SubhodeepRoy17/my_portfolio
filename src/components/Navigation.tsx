@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import resumePdf from "@/assets/Subhodeep_Resume_Complete (1).pdf";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -45,6 +46,12 @@ export const Navigation = () => {
     }
   };
 
+  const handleDownloadCV = () => {
+    // Open the PDF in a new tab
+    window.open(resumePdf, '_blank');
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -83,7 +90,11 @@ export const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="hero" size="sm">
+            <Button 
+              variant="hero" 
+              size="sm"
+              onClick={handleDownloadCV}
+            >
               Download CV
             </Button>
           </div>
@@ -117,7 +128,12 @@ export const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="hero" size="sm" className="w-full mt-4">
+            <Button 
+              variant="hero" 
+              size="sm" 
+              className="w-full mt-4"
+              onClick={handleDownloadCV}
+            >
               Download CV
             </Button>
           </div>

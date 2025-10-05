@@ -4,39 +4,39 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const experiences = [
   {
-    title: "Senior Full-Stack Developer",
-    company: "Tech Innovators Inc.",
-    period: "2022 - Present",
+    title: "Software Developer Engineer Intern",
+    company: "Bluestock Fintech Pvt. Ltd.",
+    period: "July 2025 - August 2025",
     description:
-      "Leading development of scalable web applications, mentoring junior developers, and implementing best practices across the team.",
+      "Worked on enhancing the company's main product by implementing new features and optimizing existing codebase using React and TypeScript.",
     achievements: [
-      "Reduced application load time by 40% through optimization",
-      "Migrated legacy systems to modern React architecture",
-      "Implemented CI/CD pipeline improving deployment efficiency",
+      "Developed 3 major features increasing user engagement by 20%",
+      "Optimized application performance reducing load times by 30%",
+      "Collaborated with cross-functional teams to deliver high-quality software",
     ],
   },
   {
-    title: "Full-Stack Developer",
-    company: "Digital Solutions Ltd.",
-    period: "2020 - 2022",
+    title: "Generative AI Intern",
+    company: "AI Wallah",
+    period: "July 2025 - August 2025",
     description:
-      "Developed and maintained multiple client projects, focusing on responsive design and performance optimization.",
+      "Contributed to the development of AI-driven applications, focusing on natural language processing and machine learning models.",
     achievements: [
-      "Built 15+ responsive web applications",
-      "Introduced TypeScript to improve code quality",
-      "Collaborated with design team on UI/UX improvements",
+      "Built a chatbot using GPT-3, improving customer support efficiency",
+      "Built a personalized weather app and a chatbot using React and OpenAI API",
+      "Implemented data preprocessing techniques to enhance model accuracy",
     ],
   },
   {
-    title: "Frontend Developer",
-    company: "StartUp Hub",
-    period: "2019 - 2020",
+    title: "AI Trainer",
+    company: "Outlier AI",
+    period: "November 2024 - January 2025",
     description:
-      "Created interactive user interfaces and implemented modern design systems for various startup projects.",
+      "Trained and fine-tuned AI models for various applications, ensuring high-quality outputs and performance.",
     achievements: [
-      "Developed reusable component library",
-      "Improved accessibility scores by 35%",
-      "Implemented responsive designs for mobile-first approach",
+      "Trained multiple AI models leading to a 15% increase in accuracy",
+      "Collaborated with data scientists to refine training datasets",
+      "Conducted performance evaluations and implemented improvements",
     ],
   },
 ];

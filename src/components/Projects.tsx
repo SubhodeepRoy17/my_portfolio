@@ -52,6 +52,9 @@ export const Projects = () => {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
+  // Create animation hooks for the maximum possible projects
+  const projectAnimations = projects.map(() => useScrollAnimation());
+
   return (
     <section id="projects" className="py-20 relative">
       <div className="container mx-auto px-6">
@@ -85,18 +88,16 @@ export const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => {
-            const cardAnimation = useScrollAnimation();
-            
-            return (
-              <Card
-                key={project.id}
-                ref={cardAnimation.ref}
-                className={`glass overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer animate-on-scroll ${
-                  cardAnimation.isVisible ? "visible" : ""
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
+          {filteredProjects.map((project, index) => (
+            <Card
+              key={project.id}
+              ref={projectAnimations[project.id - 1].ref} // Use project id to get the correct animation
+              className={`glass overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer animate-on-scroll ${
+                projectAnimations[project.id - 1].isVisible ? "visible" : ""
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              {/* ... rest of your card content remains the same */}
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
@@ -148,8 +149,7 @@ export const Projects = () => {
                 </div>
               </div>
             </Card>
-          );
-        })}
+          ))}
         </div>
       </div>
     </section>
