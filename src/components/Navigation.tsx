@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import resumePdf from "@/assets/Subhodeep_Resume_Complete (1).pdf";
+import resumePdf from "@/assets/Subhodeep_Resume.pdf";
 
 const navItems = [
   { name: "Home", href: "#home" },
